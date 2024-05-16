@@ -18,59 +18,63 @@ import com.demo.graphql.request.CreateSubjectRequest;
 @Service
 public class StudentService {
 
-	@Autowired
-	StudentRepository studentRepository;
-	
-	@Autowired
-	AddressRepository addressRepository;
-	
-	@Autowired
-	SubjectRepository subjectRepository;
-	
-	public List<Student> getAllStudents () {
-		return studentRepository.findAll();
-	}
-	
-	public String getFirstNameById (long id) {
-		return studentRepository.findById(id).get().getFirstName();
-	}
-	
-	public String getLastNameById (long id) {
-		return studentRepository.findById(id).get().getLastName();
-	}
-	
-	public Student createStudent (CreateStudentRequest createStudentRequest) {
-		Student student = new Student(createStudentRequest);
-		
-		Address address = new Address();
-		address.setStreet(createStudentRequest.getStreet());
-		address.setCity(createStudentRequest.getCity());
-		
-		address = addressRepository.save(address);
-		
-		student.setAddress(address);
-		student = studentRepository.save(student);
-		
-		List<Subject> subjectsList = new ArrayList<Subject>();
-		
-		if(createStudentRequest.getSubjectsLearning() != null) {
-			for (CreateSubjectRequest createSubjectRequest : 
-					createStudentRequest.getSubjectsLearning()) {
-				Subject subject = new Subject();
-				subject.setSubjectName(createSubjectRequest.getSubjectName());
-				subject.setMarksObtained(createSubjectRequest.getMarksObtained());
-				subject.setStudent(student);
-				
-				subjectsList.add(subject);
-			}
-			
-			subjectRepository.saveAll(subjectsList);
-			
-		}
-		
-		student.setLearningSubjects(subjectsList);
-		
-		return student;
-	}
-	
+    @Autowired
+    StudentRepository studentRepository;
+
+    @Autowired
+    AddressRepository addressRepository;
+
+    @Autowired
+    SubjectRepository subjectRepository;
+
+    public List<Student> getAllStudents() {
+        return studentRepository.findAll();
+    }
+
+    public String getFirstNameById(long id) {
+        return studentRepository.findById(id).get().getFirstName();
+    }
+
+    public String getLastNameById(long id) {
+        return studentRepository.findById(id).get().getLastName();
+    }
+
+    public Student getStudentById(long id) {
+        return studentRepository.findById(id).orElseThrow(() -> new RuntimeException("Student not found"));
+    }
+
+    public Student createStudent(CreateStudentRequest createStudentRequest) {
+        Student student = new Student(createStudentRequest);
+
+        Address address = new Address();
+        address.setStreet(createStudentRequest.getStreet());
+        address.setCity(createStudentRequest.getCity());
+
+        address = addressRepository.save(address);
+
+        student.setAddress(address);
+        student = studentRepository.save(student);
+
+        List<Subject> subjectsList = new ArrayList<Subject>();
+
+        if (createStudentRequest.getSubjectsLearning() != null) {
+            for (CreateSubjectRequest createSubjectRequest :
+                    createStudentRequest.getSubjectsLearning()) {
+                Subject subject = new Subject();
+                subject.setSubjectName(createSubjectRequest.getSubjectName());
+                subject.setMarksObtained(createSubjectRequest.getMarksObtained());
+                subject.setStudent(student);
+
+                subjectsList.add(subject);
+            }
+
+            subjectRepository.saveAll(subjectsList);
+
+        }
+
+        student.setLearningSubjects(subjectsList);
+
+        return student;
+    }
+
 }

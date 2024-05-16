@@ -63,8 +63,6 @@
 <!--            <artifactId>graphql-spring-boot-starter</artifactId>-->
 <!--            <version>5.0.2</version>-->
 <!--        </dependency>-->
-
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.graphql-java/graphql-java-tools &ndash;&gt;-->
 <!--        <dependency>-->
 <!--            <groupId>com.graphql-java</groupId>-->
 <!--            <artifactId>graphql-java-tools</artifactId>-->

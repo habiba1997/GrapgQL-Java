@@ -6,6 +6,7 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 
 import org.springframework.stereotype.Controller;
 
+
 @Controller
 public class Query {
 
@@ -23,6 +24,7 @@ public class Query {
     public String getFullName(@Argument SampleRequest sampleRequest) {
         return sampleRequest.getFirstName() + " " + sampleRequest.getLastName();
     }
+//	getFullName(sampleRequest: {firstName: "salme", lastName: "ahmed"})
 }
 
 
