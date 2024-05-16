@@ -61,3 +61,6 @@ The GraphQL runtime engine does the following:
 1.  the request and validates the request against the schema.
 2. Then it calls the `book` Data Fetcher (handler method `books()`) to fetch book information once.
 3. And, then it calls the `ratings` Data Fetcher for each book.
+
+Note:
+- AnnotatedControllerConfigurer detects @Controller beans and registers their annotated handler methods as DataFetchers via RuntimeWiring.Builder.
