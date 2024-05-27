@@ -25,7 +25,7 @@ public class StudentResponseResolver {
 
         if (studentResponse.getStudent().getLearningSubjects() != null) {
             for (Subject subject : studentResponse.getStudent().getLearningSubjects()) {
-                if (subjectNameFilter == SubjectNameFilter.ALL || subject.getSubjectName().equalsIgnoreCase(subjectNameFilter.name())) {
+                if (subjectNameFilter == null ||  subjectNameFilter == SubjectNameFilter.ALL || subject.getSubjectName().equalsIgnoreCase(subjectNameFilter.name())) {
                 learningSubjects.add(new SubjectResponse(subject));
                 }
             }
@@ -34,7 +34,6 @@ public class StudentResponseResolver {
         return learningSubjects;
 
     }
-
     @SchemaMapping(typeName = "StudentResponse", field = "fullName")
     public String fullName(StudentResponse studentResponse) {
         return studentResponse.getFirstName() + " " + studentResponse.getLastName();
