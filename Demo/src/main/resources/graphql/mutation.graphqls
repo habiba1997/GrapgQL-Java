@@ -1,0 +1,21 @@
+
+type Mutation {
+    fetchFullName(sampleRequest: SampleRequest): String
+    createStudent(request : CreateStudentRequest) : StudentResponse
+}
+
+input CreateStudentRequest {
+    name: String
+    email: String
+    subjectsLearning: [CreateSubjectRequest]
+}
+
+input CreateSubjectRequest {
+    subjectName : String
+    marksObtained : Float
+}
+
+input SampleRequest {
+    firstName: String!
+    lastName: String
+}

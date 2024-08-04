@@ -2,10 +2,10 @@ package com.demo.graphql.enums;
 
 public enum SubjectNameFilter {
 
+    ALL,
     JAVA,
-    SQL,
+    MONGODB,
+    MYSQL;
 
-    MYSQL,
-    ALL;
 
 }

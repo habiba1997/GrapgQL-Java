@@ -1,10 +1,9 @@
 package com.demo.graphql.response;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.demo.graphql.entity.Student;
-import com.demo.graphql.entity.Subject;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
@@ -50,5 +49,11 @@ public class StudentResponse {
 //			}
 //		}
     }
+
+
+    public static List<StudentResponse> StudentResponses(List<Student> students) {
+        return students.stream().map(StudentResponse::new).collect(Collectors.toList());
+    }
+
 
 }

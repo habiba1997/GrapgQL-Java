@@ -1,0 +1,25 @@
+type Query {
+    getStudent(id: Int): StudentResponse
+    getStudents : [StudentResponse]
+}
+
+
+type StudentResponse {
+    id: Int
+    name: String
+    email: String
+    learningSubjects(subjectNameFilter: SubjectNameFilter): [SubjectResponse]
+}
+
+type SubjectResponse {
+    id: Int
+    subjectName: String
+    marksObtained: Float
+}
+
+enum SubjectNameFilter {
+    JAVA
+    MYSQL
+    MONGODB
+    ALL
+}

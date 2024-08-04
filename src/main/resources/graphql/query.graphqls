@@ -1,10 +1,9 @@
-# Scalar Long
-
 type Query {
     firstQuery : String
-    secondQuery : String	
+    secondQuery : String
     getFullName(sampleRequest : SampleRequest) : String
     getStudent (id : Int) : StudentResponse
+    getStudents : [StudentResponse]
 
 }
 input SampleRequest {
@@ -31,7 +30,7 @@ type SubjectResponse{
 
 enum SubjectNameFilter {
     JAVA
-    SQL
     MYSQL
+    MONGODB
     ALL
 }
