@@ -1,0 +1,30 @@
+type Query {
+    fetchFullName(sampleRequest: SampleRequest): String
+    getStudent(id: Int): StudentResponse
+    getStudents : [StudentResponse]
+}
+
+input SampleRequest {
+    firstName: String!
+    lastName: String
+}
+
+type StudentResponse {
+    id: Int
+    name: String
+    email: String
+    learningSubjects(subjectNameFilter: SubjectNameFilter): [SubjectResponse]
+}
+
+type SubjectResponse {
+    id: Int
+    subjectName: String
+    marksObtained: Float
+}
+
+enum SubjectNameFilter {
+    JAVA
+    MYSQL
+    MONGODB
+    ALL
+}
